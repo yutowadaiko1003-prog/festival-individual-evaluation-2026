@@ -1,1 +1,157 @@
-<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>第2回検証｜個人別評価</title><style>*{box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN",sans-serif;background:#f6f7f8;color:#27384b;margin:0;padding:32px 16px}.wrap{max-width:1320px;margin:auto}h1{font-size:30px;margin:12px 0 5px}.sub{color:#748396;font-size:14px}.legend{display:flex;flex-wrap:wrap;gap:9px;margin:24px 0}.chip{border:1px solid #e1e6eb;background:white;border-radius:22px;padding:10px 13px;cursor:pointer;color:#263443;font-weight:600}.chip.off{opacity:.3}.dot{display:inline-block;width:12px;height:12px;border-radius:4px;margin-right:7px}.panel{background:white;border:1px solid #e6eaef;border-radius:20px;padding:24px;margin:22px 0;box-shadow:0 6px 20px #1b2b4008}h2{font-size:19px}.scroll{overflow-x:auto}svg{display:block;width:100%;min-width:920px;height:auto}.tip{position:fixed;background:#27384b;color:white;border-radius:12px;padding:12px;pointer-events:none;display:none;z-index:3;box-shadow:0 8px 22px #182b4b33}.note{font-size:13px;color:#65748a;line-height:1.8}.nav a{color:#426ea5}.save{float:right;background:white;border:1px solid #d8dfe6;border-radius:10px;padding:10px 14px;cursor:pointer}@media(max-width:700px){body{padding:16px 8px}.panel{padding:16px 10px}} .people{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 10px}.person{border:1px solid #dce3ea;background:#fff;color:#28394d;border-radius:14px;padding:12px 18px;font-weight:700;font-size:15px;cursor:pointer}.person.selected{background:#27384b;color:white;border-color:#27384b}.person:focus-visible,.chip:focus-visible{outline:3px solid #7bb6ef;outline-offset:2px}.intro{font-size:14px;color:#6b7a8a}.panel{margin-top:18px} </style></head><body><main class="wrap"><h1>第2回検証｜個人別評価</h1><p class="intro">名前を選ぶと同じページ内でグラフが切り替わります。ブラウザの戻るボタンは不要です。</p><nav class="people" aria-label="回答者切り替え"><button class="person" type="button" onclick="selectPerson(0)">華音さん</button><button class="person" type="button" onclick="selectPerson(1)">ももこさん</button><button class="person" type="button" onclick="selectPerson(2)">夏実さん</button><button class="person" type="button" onclick="selectPerson(3)">ゆうなさん</button><button class="person" type="button" onclick="selectPerson(4)">りおちゃん</button></nav><button class="save" onclick="saveSVG()">SVGで保存</button><h1 id="title"></h1><p class="sub">個人の10段階評価｜5種目の比較｜最優先4項目＋その他5項目</p><div class="legend" id="legend"></div><section class="panel"><h2>PRIORITY 01｜最優先の評価項目</h2><div class="scroll" id="top"></div></section><section class="panel"><h2>PRIORITY 02｜その他の評価項目</h2><div class="scroll" id="bottom"></div></section><p class="note">※ 原票からの転記データです。華音さんの空白は10点として処理しています。その他の未確定値は棒を表示していません。正式公開前に原票との照合を推奨します。</p></main><div class="tip" id="tip" role="status"></div><script>const DATA=[{"person":"華音さん","names":["SHIN長","C力検査","反重力（長座）","キャッチ（反復）","ウチュトレ（VR）"],"labels":["純粋な楽しさ","スタッフとの交流","予想外の面白さ","もう一度やりたい","得意・不得意に関係なく楽しめる","気軽に参加できる","観戦の面白さ","ルールの分かりやすさ","結果への納得感"],"colors":["#6b8ec7","#ff6b61","#a9d9e8","#ffd166","#f7c6a1"],"scores":[[10,5,10,10,10,10,10,10,10],[9,10,5,5,10,10,10,6,8],[10,10,7,9,5,7,10,10,10],[7,9,9,5,4,4,7,9,8],[10,10,10,10,10,8,8,8,5]],"sources":["IMG_3170.JPG","IMG_3171.JPG","IMG_3172.JPG","IMG_3173.JPG","IMG_3174.JPG"]},{"person":"ももこさん","names":["SHIN長","C力検査","反重力（長座）","キャッチ（反復）","ウチュトレ（VR）"],"labels":["純粋な楽しさ","スタッフとの交流","予想外の面白さ","もう一度やりたい","得意・不得意に関係なく楽しめる","気軽に参加できる","観戦の面白さ","ルールの分かりやすさ","結果への納得感"],"colors":["#6b8ec7","#ff6b61","#a9d9e8","#ffd166","#f7c6a1"],"scores":[[8,9,7,9,10,10,8,8,8],[7,8,9,6,10,8,9,9,7],[9,9,9,10,6,7,9,9,10],[5,5,5,5,3,3,8,10,8],[10,10,10,10,10,8,9,9,6]],"sources":["IMG_3175 2.JPG","IMG_3176 2.JPG","IMG_3177 2.JPG","IMG_3178 2.JPG","IMG_3179 2.JPG"]},{"person":"夏実さん","names":["SHIN長","C力検査","反重力（長座）","キャッチ（反復）","ウチュトレ（VR）"],"labels":["純粋な楽しさ","スタッフとの交流","予想外の面白さ","もう一度やりたい","得意・不得意に関係なく楽しめる","気軽に参加できる","観戦の面白さ","ルールの分かりやすさ","結果への納得感"],"colors":["#6b8ec7","#ff6b61","#a9d9e8","#ffd166","#f7c6a1"],"scores":[[8,8,9,8,9,8,8,9,9],[6,7,8,8,7,9,8,8,8],[7,8,9,8,7,8,9,8,8],[7,8,9,8,7,8,9,8,8],[8,7,8,9,7,8,7,7,7]],"sources":["IMG_3180.JPG","IMG_3181.JPG","IMG_3182.JPG","IMG_3183.JPG","IMG_3184.JPG"]},{"person":"ゆうなさん","names":["SHIN長","C力検査","反重力（長座）","キャッチ（反復）","ウチュトレ（VR）"],"labels":["純粋な楽しさ","スタッフとの交流","予想外の面白さ","もう一度やりたい","得意・不得意に関係なく楽しめる","気軽に参加できる","観戦の面白さ","ルールの分かりやすさ","結果への納得感"],"colors":["#6b8ec7","#ff6b61","#a9d9e8","#ffd166","#f7c6a1"],"scores":[[10,8,10,10,10,8,6,10,10],[10,10,10,10,10,10,10,10,8],[10,10,10,10,8,9,10,10,10],[10,8,10,10,8,10,10,10,10],[8,10,10,10,10,10,10,6,10]],"sources":["IMG_3185.JPG","IMG_3186.JPG","IMG_3187.JPG","IMG_3188.JPG","IMG_3189.JPG"]},{"person":"りおちゃん","names":["SHIN長","C力検査","反重力（長座）","キャッチ（反復）","ウチュトレ（VR）"],"labels":["純粋な楽しさ","スタッフとの交流","予想外の面白さ","もう一度やりたい","得意・不得意に関係なく楽しめる","気軽に参加できる","観戦の面白さ","ルールの分かりやすさ","結果への納得感"],"colors":["#6b8ec7","#ff6b61","#a9d9e8","#ffd166","#f7c6a1"],"scores":[[10,2,5,10,10,10,null,10,6],[9,null,8,8,10,10,10,6,10],[10,8,10,10,9,10,10,10,10],[10,6,10,10,10,8,10,10,10],[10,6,10,10,10,8,10,6,10]],"sources":["IMG_3196.JPG","IMG_3197.JPG","IMG_3198.JPG","IMG_3199.JPG","IMG_3200.JPG"]}];let d=DATA[0];let on=d.names.map(()=>true),NS='http://www.w3.org/2000/svg';function e(t,a={},txt){let n=document.createElementNS(NS,t);Object.entries(a).forEach(([k,v])=>n.setAttribute(k,v));if(txt!==undefined)n.textContent=txt;return n}function draw(id,items){const W=1150,H=355,L=44,B=270,T=20,svg=e('svg',{viewBox:`0 0 ${W} ${H}`});for(let v=0;v<=10;v+=2){let y=B-v/10*(B-T);svg.append(e('line',{x1:L,y1:y,x2:W-12,y2:y,stroke:'#e8edf2','stroke-dasharray':'3 6'}));svg.append(e('text',{x:20,y:y+4,fill:'#8190a0','font-size':12},v))}let gw=(W-L-12)/items.length;items.forEach((j,k)=>{let cx=L+gw*(k+.5),sw=Math.min(185,gw*.8),gap=5,bw=(sw-4*gap)/5;d.names.forEach((name,i)=>{let v=d.scores[i][j];if(!on[i]||v===null)return;let x=cx-sw/2+i*(bw+gap),y=B-v/10*(B-T),h=B-y;let r=Math.min(6,bw/4),path=`M${x} ${B}V${y+r}Q${x} ${y} ${x+r} ${y}H${x+bw-r}Q${x+bw} ${y} ${x+bw} ${y+r}V${B}Z`;let bar=e('path',{d:path,fill:d.colors[i]});bar.onmousemove=ev=>{let tip=document.getElementById('tip');tip.style.display='block';tip.style.left=Math.max(5,Math.min(ev.clientX+14,innerWidth-245))+'px';tip.style.top=Math.max(5,Math.min(ev.clientY+14,innerHeight-100))+'px';tip.textContent=name+'｜'+d.labels[j]+'：'+v+' / 10点'};bar.onmouseleave=()=>document.getElementById('tip').style.display='none';svg.append(bar)});svg.append(e('text',{x:cx,y:B+26,'text-anchor':'middle','font-size':12,fill:'#718092'},String(j+1).padStart(2,'0')));let label=d.labels[j];let p=label.length>14?[label.slice(0,14),label.slice(14)]:[label];p.forEach((s,n)=>svg.append(e('text',{x:cx,y:B+46+n*17,'text-anchor':'middle','font-size':12,'font-weight':600,fill:'#27384b'},s)))});document.getElementById(id).replaceChildren(svg)}function refresh(){document.getElementById('title').textContent=d.person+'｜種目別評価';draw('top',[0,1,3,5]);draw('bottom',[2,4,6,7,8]);document.getElementById('legend').replaceChildren(...d.names.map((n,i)=>{let b=document.createElement('button');b.className='chip'+(on[i]?'':' off');b.innerHTML=`<span class="dot" style="background:${d.colors[i]}"></span>${n}`;b.onclick=()=>{on[i]=!on[i];refresh()};return b}))}function saveSVG(){for(let id of ['top','bottom']){let svg=document.querySelector('#'+id+' svg').cloneNode(true);svg.setAttribute('xmlns',NS);let blob=new Blob([new XMLSerializer().serializeToString(svg)],{type:'image/svg+xml'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=d.person+'_'+id+'.svg';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),2000)}}function selectPerson(i){d=DATA[i];on=d.names.map(()=>true);document.querySelectorAll('.person').forEach((b,k)=>{b.classList.toggle('selected',k===i);b.setAttribute('aria-pressed',String(k===i))});document.getElementById('tip').style.display='none';refresh();window.scrollTo({top:0,behavior:'smooth'})}selectPerson(0);</script></body></html>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="color-scheme" content="light" />
+<title>第2回検証｜種目別評価</title>
+<style>
+:root {--ink:#27384b;--muted:#788897;--line:#e5eaf0;--bg:#f6f8fa;--surface:#fff;--brand:#283b50;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;color:var(--ink);background:var(--bg)}
+*{box-sizing:border-box}
+body{margin:0;padding:30px 20px 70px}
+.wrap{max-width:1330px;margin:0 auto}
+.eyebrow{font-size:11px;letter-spacing:.19em;font-weight:800;color:#8090a2}
+.topbar{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap}
+h1{font-size:clamp(24px,3.5vw,36px);letter-spacing:-.04em;margin:7px 0 9px}
+.sub{font-size:14px;color:#778799;margin:0;line-height:1.8}
+.tabtitle{font-size:12px;color:#7b8b9b;font-weight:800;letter-spacing:.07em;margin:30px 0 12px}
+.tabs{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 20px}
+.tab{font:inherit;font-weight:700;font-size:14px;border:1px solid #dce4ec;background:#fff;color:#33465c;padding:12px 18px;border-radius:14px;cursor:pointer;transition:background .17s,color .17s,transform .17s}
+.tab:hover{background:#eff4f8}
+.tab.selected{background:#283b50;color:#fff;border-color:#283b50;box-shadow:0 6px 14px #273b501c}
+.tab:focus-visible,.chip:focus-visible,.save:focus-visible{outline:3px solid #84bbed;outline-offset:2px}
+.summary{display:flex;align-items:center;gap:12px;justify-content:space-between;flex-wrap:wrap;margin-top:12px}
+.summary h2{font-size:clamp(18px,2.5vw,25px);margin:0}
+.summary p{font-size:13px;color:var(--muted);margin:6px 0 0}
+.save{border:1px solid #d9e1e8;background:#fff;border-radius:11px;padding:11px 15px;color:#34485e;font-weight:800;cursor:pointer}
+.legend{display:flex;gap:9px;flex-wrap:wrap;margin:22px 0 12px}
+.chip{display:flex;gap:8px;align-items:center;background:#fff;border:1px solid #e0e6ec;border-radius:50px;padding:10px 14px;cursor:pointer;font:inherit;font-size:12px;font-weight:700;color:#394b5e}
+.chip.off{opacity:.36}
+.swatch{width:12px;height:12px;border-radius:4px;flex:none}
+.panel{background:#fff;border:1px solid var(--line);box-shadow:0 9px 28px #27384b08;border-radius:21px;padding:24px 22px 16px;margin-top:20px}
+.panel-head{display:flex;align-items:center;gap:11px;flex-wrap:wrap}
+.priority{font-size:11px;background:#283b50;color:#fff;letter-spacing:.035em;font-weight:800;padding:7px 10px;border-radius:7px}
+.priority.low{background:#eff2f5;color:#667788}
+.panel h3{margin:0;font-size:18px;letter-spacing:-.02em}
+.panel-hint{font-size:12px;color:#8393a2;margin:8px 0 13px}
+.chart{overflow-x:auto;overscroll-behavior-x:contain}
+.chart svg{display:block;width:100%;min-width:900px;height:auto}
+.chart svg .bar{cursor:crosshair;transition:opacity .15s}
+.chart svg .bar:hover{opacity:.82}
+.note{font-size:12px;line-height:1.85;color:#7b8997;margin:22px 3px}
+.tip{position:fixed;display:none;z-index:50;background:#243649;color:#fff;border-radius:13px;padding:13px 16px;box-shadow:0 9px 28px #1f344740;pointer-events:none;font-size:13px;line-height:1.7;max-width:280px;min-width:250px}
+.tip strong{font-size:20px}
+.tip-label{color:#c5d2df;font-size:12px;margin:2px 0 8px}
+.tip-metric{font-size:12px;display:flex;align-items:baseline;gap:7px;border-top:1px solid #ffffff22;padding-top:6px;margin-top:6px}
+.tip-metric strong{margin-left:auto;line-height:1}
+.tip-metric span{color:#dce5eb}
+.tip-count{font-size:11px;color:#d5e1ee;margin-top:9px}
+@media(max-width:680px){body{padding:19px 10px 40px}.panel{padding:18px 11px 12px}.tab{padding:11px 12px;font-size:12px}.chip{padding:8px 11px;font-size:11px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="topbar"><div><div class="eyebrow">EXPERIENCE EVALUATION / 02</div><h1>第2回検証｜種目別評価</h1><p class="sub">5種目の評価を、5人の合計と回答者別で比較</p></div></div>
+  <div class="tabtitle">表示するグラフを選択</div>
+  <nav class="tabs" id="tabs" aria-label="評価グラフの切り替え"></nav>
+  <div class="summary"><div><h2 id="view-title"></h2><p id="view-subtitle"></p></div><button type="button" class="save" id="save">グラフをSVGで保存 ↗</button></div>
+  <div class="legend" id="legend" aria-label="種目の表示切り替え"></div>
+  <section class="panel" aria-labelledby="top-heading"><div class="panel-head"><span class="priority">PRIORITY 01</span><h3 id="top-heading">最優先の評価項目</h3></div><p class="panel-hint">体験価値の中核となる評価指標 ・4項目</p><div id="topchart" class="chart"></div></section>
+  <section class="panel" aria-labelledby="bottom-heading"><div class="panel-head"><span class="priority low">PRIORITY 02</span><h3 id="bottom-heading">その他の評価項目</h3></div><p class="panel-hint">体験の質を補足する評価指標 ・5項目</p><div id="bottomchart" class="chart"></div></section>
+  <p class="note" id="note"></p>
+</main>
+<div class="tip" id="tip" role="status"></div>
+<script>
+'use strict';
+const DATA={"events":["C力検査","SHIN長","キャッチ（反復）","反重力（長座）","ウチュトレ（VR）"],"labels":["純粋な楽しさ","スタッフとの交流","予想外の面白さ","もう一度やりたい","得意・不得意に関係なく楽しめる","気軽に参加できる","観戦の面白さ","ルールの分かりやすさ","結果への納得感"],"colors":["#6b8ec7","#ff6b61","#a9d9e8","#ffd166","#f7c6a1"],"people":[{"person":"華音さん","scores":[[10,5,10,10,10,10,10,10,10],[9,10,5,5,10,10,10,6,8],[10,10,7,9,5,7,10,10,10],[7,9,9,5,4,4,7,9,8],[10,10,10,10,10,8,8,8,5]]},{"person":"ももこさん","scores":[[8,9,7,9,10,10,8,8,8],[7,8,9,6,10,8,9,9,7],[9,9,9,10,6,7,9,9,10],[5,5,5,5,3,3,8,10,8],[10,10,10,10,10,8,9,9,6]]},{"person":"夏実さん","scores":[[8,8,9,8,9,8,8,9,9],[6,7,8,8,7,9,8,8,8],[7,8,9,8,7,8,9,8,8],[7,8,9,8,7,8,9,8,8],[8,7,8,9,7,8,7,7,7]]},{"person":"ゆうなさん","scores":[[10,8,10,10,10,8,6,10,10],[10,10,10,10,10,10,10,10,8],[10,10,10,10,8,9,10,10,10],[10,8,10,10,8,10,10,10,10],[8,10,10,10,10,10,10,6,10]]},{"person":"かすみさん","scores":[[10,2,5,10,10,10,null,10,6],[9,null,8,8,10,10,10,6,10],[10,8,10,10,9,10,10,10,10],[10,6,10,10,10,8,10,10,10],[10,6,10,10,10,8,10,6,10]]}]};
+const DEFAULT_VIEW=1;
+const NS='http://www.w3.org/2000/svg';
+const viewKeys=['all','kanon','momoko','natsumi','yuuna','kasumi'];
+const viewNames=['5人の合計',...DATA.people.map(p=>p.person)];
+// 合計値は個人5人の回答のみから自動集計。未回答は0点とみなさず平均から除外。
+const AGGREGATE=DATA.events.map((_,eventIndex)=>DATA.labels.map((_,questionIndex)=>{
+  const scores=DATA.people.map(person=>person.scores[eventIndex][questionIndex])
+    .filter(value=>typeof value==='number'&&Number.isFinite(value));
+  const sum=scores.reduce((total,value)=>total+value,0);
+  return {sum,count:scores.length,average:scores.length?sum/scores.length:null};
+}));
+const prioritySets=[[0,1,3,5],[2,4,6,7,8]];
+let activeView=DEFAULT_VIEW;
+let visibleEvents=DATA.events.map(()=>true);
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
+function svgEl(tag,attributes={},text){let e=document.createElementNS(NS,tag);for(const [k,v] of Object.entries(attributes))e.setAttribute(k,v);if(text!==undefined)e.textContent=text;return e}
+function scores(){return activeView===0?AGGREGATE.map(row=>row.map(item=>item.sum)):DATA.people[activeView-1].scores}
+function currentMaximum(){return activeView===0?50:10}
+function getScore(i,j){const val=scores()[i][j];return typeof val==='number'&&Number.isFinite(val)?val:null}
+function drawChart(id,indices){
+  const width=1220,height=365,left=54,right=15,top=22,bottom=279,plotHeight=bottom-top,max=currentMaximum();
+  const svg=svgEl('svg',{viewBox:`0 0 ${width} ${height}`,role:'img','aria-label':`${viewNames[activeView]}の種目別評価グラフ`});
+  const ticks=activeView===0?[0,10,20,30,40,50]:[0,2,4,6,8,10];
+  for(const value of ticks){const y=bottom-value/max*plotHeight;svg.append(svgEl('line',{x1:left,y1:y,x2:width-right,y2:y,stroke:value===0?'#cdd5df':'#e7edf2','stroke-width':value===0?'1.4':'1','stroke-dasharray':value===0?'0':'3 6'}));svg.append(svgEl('text',{x:left-15,y:y+4,'font-size':12,fill:'#8996a5','text-anchor':'end'},String(value)))}
+  const groupWidth=(width-left-right)/indices.length;
+  for(const [k,j] of indices.entries()){
+    const center=left+groupWidth*(k+.5),groupSize=Math.min(193,groupWidth*.72),gap=6,barWidth=(groupSize-4*gap)/5;
+    DATA.events.forEach((eventName,i)=>{
+      if(!visibleEvents[i])return;
+      const value=getScore(i,j);if(value===null)return;
+      const h=value/max*plotHeight,x=center-groupSize/2+i*(barWidth+gap),y=bottom-h,r=Math.min(5,barWidth/4);
+      const d=`M ${x} ${bottom} L ${x} ${y+r} Q ${x} ${y} ${x+r} ${y} L ${x+barWidth-r} ${y} Q ${x+barWidth} ${y} ${x+barWidth} ${y+r} L ${x+barWidth} ${bottom} Z`;
+      const bar=svgEl('path',{d,fill:DATA.colors[i],class:'bar',tabindex:'0'});
+      const item=AGGREGATE[i][j];
+      const average=item.average===null?'―':item.average.toFixed(1);
+      const tipText=activeView===0
+        ?`${eventName}｜${DATA.labels[j]}｜合計${value}/50点｜1人当たり${average}/10点｜回答${item.count}/5人`
+        :`${eventName}｜${DATA.labels[j]}｜${value}/10点`;
+      bar.setAttribute('aria-label',tipText);
+      function showTip(ev){
+        const t=$('tip');t.style.display='block';
+        const headline=`<span style="color:${DATA.colors[i]}">●</span> ${esc(eventName)}<div class="tip-label">${esc(DATA.labels[j])}</div>`;
+        t.innerHTML=activeView===0
+          ?`${headline}<div class="tip-metric">合計 <strong>${value}</strong> <span>/ 50点</span></div><div class="tip-metric">1人当たり <strong>${average}</strong> <span>/ 10点</span></div><div class="tip-count">回答 ${item.count} / 5人${item.count<5?'・未回答は平均から除外':''}</div>`
+          :`${headline}<div class="tip-metric">評価 <strong>${value}</strong> <span>/ 10点</span></div>`;
+        const xPos=ev.clientX??50,yPos=ev.clientY??80;
+        const tipWidth=280,tipHeight=activeView===0?173:133;
+        t.style.left=Math.max(8,Math.min(xPos+12,innerWidth-tipWidth-8))+'px';
+        t.style.top=Math.max(8,Math.min(yPos+12,innerHeight-tipHeight-8))+'px';
+      }
+      bar.addEventListener('pointermove',showTip);bar.addEventListener('pointerleave',()=>{$('tip').style.display='none'});bar.addEventListener('focus',()=>showTip({clientX:innerWidth/2,clientY:80}));bar.addEventListener('blur',()=>{$('tip').style.display='none'});
+      svg.append(bar);
+    });
+    svg.append(svgEl('text',{x:center,y:bottom+25,'text-anchor':'middle','font-size':11,fill:'#8c99a7'},String(j+1).padStart(2,'0')));
+    const label=DATA.labels[j];const chunks=label.length>15?[label.slice(0,14),label.slice(14)]:[label];
+    chunks.forEach((line,n)=>svg.append(svgEl('text',{x:center,y:bottom+45+n*17,'text-anchor':'middle','font-size':12,'font-weight':700,fill:'#33465c'},line)));
+  }
+  $(id).replaceChildren(svg);
+}
+function drawLegend(){ $('legend').replaceChildren(...DATA.events.map((name,i)=>{
+    const button=document.createElement('button');button.type='button';button.className='chip'+(visibleEvents[i]?'':' off');button.setAttribute('aria-pressed',String(visibleEvents[i]));
+    button.innerHTML=`<span class="swatch" style="background:${DATA.colors[i]}"></span>${esc(name)}`;
+    button.onclick=()=>{visibleEvents[i]=!visibleEvents[i];render()};return button;
+}))}
+function render(){
+  $('view-title').textContent=activeView===0?'5人の評価を合計した種目別比較':`${viewNames[activeView]}の種目別評価`;
+  $('view-subtitle').textContent=activeView===0?'個人データから自動集計｜合計50点満点・1人当たり10点満点｜棒にカーソルを合わせて確認':'個人の10段階評価｜最優先4項目＋その他5項目';
+  $('note').textContent=activeView===0
+    ?'※ 5人の個人別回答を合計した数値です。合計の比較軸は50点満点で固定しています。かすみさんの未回答2箇所（C力検査の「観戦の面白さ」、SHIN長の「スタッフとの交流」）は加算せず、その2項目の平均は回答者4人で計算しています。未回答は0点として平均しません。凡例を押すと種目を表示・非表示にできます。原票との最終照合は未実施です。'
+    :'※ 個人別回答の点数を表示しています。華音さんの未記入箇所はご指定どおり10点として処理済みです。かすみさんの未回答2箇所は棒を表示しません。原票との最終照合は未実施です。';
+  $('tabs').replaceChildren(...viewNames.map((name,i)=>{const b=document.createElement('button');b.type='button';b.className='tab'+(activeView===i?' selected':'');b.textContent=name;b.setAttribute('aria-pressed',String(activeView===i));b.onclick=()=>changeView(i);return b}));
+  drawLegend();drawChart('topchart',prioritySets[0]);drawChart('bottomchart',prioritySets[1]);
+  document.title=`${viewNames[activeView]}｜第2回検証`;
+}
+function changeView(i){if(i<0||i>=viewKeys.length)return;activeView=i;visibleEvents=DATA.events.map(()=>true);history.replaceState(null,'','#'+viewKeys[i]);$('tip').style.display='none';render()}
+function saveSVG(){
+  const svgs=[...document.querySelectorAll('.chart svg')],whole=svgEl('svg',{xmlns:NS,width:1220,height:850,viewBox:'0 0 1220 850'});
+  whole.append(svgEl('rect',{x:0,y:0,width:1220,height:850,fill:'#ffffff'}));
+  whole.append(svgEl('text',{x:54,y:35,'font-family':'sans-serif','font-size':24,'font-weight':700,fill:'#27384b'},$('view-title').textContent));
+  svgs.forEach((svg,i)=>{const group=svgEl('g',{transform:`translate(0 ${i*409+53})`});group.append(svgEl('text',{x:54,y:10,'font-family':'sans-serif','font-size':16,'font-weight':700,fill:'#27384b'},i===0?'PRIORITY 01　最優先の評価項目':'PRIORITY 02　その他の評価項目'));const chart=svg.cloneNode(true);chart.setAttribute('y',21);group.append(chart);whole.append(group)});
+  const blob=new Blob([new XMLSerializer().serializeToString(whole)],{type:'image/svg+xml;charset=utf-8'});
+  const url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download=`第2回検証_${viewNames[activeView]}_種目別評価.svg`;link.click();setTimeout(()=>URL.revokeObjectURL(url),3000);
+}
+$('save').addEventListener('click',saveSVG);
+window.addEventListener('hashchange',()=>{const idx=viewKeys.indexOf(location.hash.slice(1));if(idx>=0&&idx!==activeView){activeView=idx;visibleEvents=DATA.events.map(()=>true);render()}});
+const hashIndex=viewKeys.indexOf(location.hash.slice(1));activeView=hashIndex>=0?hashIndex:DEFAULT_VIEW;
+render();
+</script>
+</body>
+</html>
