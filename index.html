@@ -144,7 +144,7 @@ function saveSVG(){
   const svgs=[...document.querySelectorAll('.chart svg')],whole=svgEl('svg',{xmlns:NS,width:1220,height:850,viewBox:'0 0 1220 850'});
   whole.append(svgEl('rect',{x:0,y:0,width:1220,height:850,fill:'#ffffff'}));
   whole.append(svgEl('text',{x:54,y:35,'font-family':'sans-serif','font-size':24,'font-weight':700,fill:'#27384b'},$('view-title').textContent));
-  svgs.forEach((svg,i)=>{const group=svgEl('g',{transform:`translate(0 ${i*409+53})`});group.append(svgEl('text',{x:54,y:10,'font-family':'sans-serif','font-size':16,'font-weight':700,fill:'#27384b'},i===0?'PRIORITY 01　最優先の評価項目':'PRIORITY 02　その他の評価項目'));const chart=svg.cloneNode(true);chart.setAttribute('y',21);group.append(chart);whole.append(group)});
+  svgs.forEach((svg,i)=>{const group=svgEl('g',{transform:`translate(0 ${i*409+53})`});group.append(svgEl('text',{x:54,y:10,'font-family':'sans-serif','font-size':16,'font-weight':700,fill:'#27384b'},i===0?'PRIORITY 01　最優先の評価項目':'PRIORITY 02　その他の評価項目'));const chart=svg.cloneNode(true);chart.setAttribute('width',1220);chart.setAttribute('height',365);chart.setAttribute('y',21);group.append(chart);whole.append(group)});
   const blob=new Blob([new XMLSerializer().serializeToString(whole)],{type:'image/svg+xml;charset=utf-8'});
   const url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download=`第2回検証_${viewNames[activeView]}_種目別評価.svg`;link.click();setTimeout(()=>URL.revokeObjectURL(url),3000);
 }
